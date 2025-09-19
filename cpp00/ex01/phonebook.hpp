@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frey-gal <frey-gal@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/18 11:15:07 by frey-gal          #+#    #+#             */
-/*   Updated: 2025/09/18 11:23:23 by frey-gal         ###   ########.fr       */
+/*   Created: 2025/09/19 15:33:42 by frey-gal          #+#    #+#             */
+/*   Updated: 2025/09/19 16:35:48 by frey-gal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-char make_uppercase(char c)
-{
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return c;
-}
+# include <iostream>
+# include "contact.hpp"
 
-int main(int ac, char **av)
+class Phonebook
 {
-	if (ac < 2)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	for (int i = 1; av[i]; i++)
-		for (int j = 0; av[i][j]; j++)
-			std::cout << make_uppercase(av[i][j]);
-	std::cout << std::endl;
-	return 0;
-}
+	public:
+		Phonebook();
+		Phonebook(const Phonebook &phonebook);
+		~Phonebook();
+		Phonebook &operator= (const Phonebook &phonebook);
+	private:
+		Contact contacts[8];
+};
+
+#endif

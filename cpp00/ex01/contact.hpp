@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frey-gal <frey-gal@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/18 11:15:07 by frey-gal          #+#    #+#             */
-/*   Updated: 2025/09/18 11:23:23 by frey-gal         ###   ########.fr       */
+/*   Created: 2025/09/19 16:03:13 by frey-gal          #+#    #+#             */
+/*   Updated: 2025/09/19 16:06:34 by frey-gal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
-char make_uppercase(char c)
-{
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return c;
-}
+# include <iostream>
 
-int main(int ac, char **av)
+class Contact
 {
-	if (ac < 2)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	for (int i = 1; av[i]; i++)
-		for (int j = 0; av[i][j]; j++)
-			std::cout << make_uppercase(av[i][j]);
-	std::cout << std::endl;
-	return 0;
-}
+	public:
+		Contact();
+		Contact(const Contact &contact);
+		~Contact();
+		Contact &operator= (const Contact &contact);
+	private:
+		std::string name;
+		std::string number;
+};
+
+#endif
