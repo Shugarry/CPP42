@@ -41,6 +41,11 @@ int	main(void)
 		}
 		else if (command == "SEARCH")
 		{
+			if (phonebook.get_count() == 0)
+			{
+				std::cout << "No contacts in list" << std::endl;
+				continue ;
+			}
 			std::string tmp;
 			phonebook.print_contacts();
 			std::cout << "Type an index from 0 - " << phonebook.get_len() - 1 << " to view that contact" << std::endl;
@@ -60,7 +65,7 @@ int	main(void)
 			if (flag == true)
 				continue ;
 			int index = atoi(tmp.c_str());
-			if (0 < index || index > phonebook.get_len())
+			if (index < 0 || index > phonebook.get_len() - 1)
 			{
 				std::cout << "Only numbers from 0 - " << phonebook.get_len() - 1 << "  are accepted, aborting SEARCH" << std::endl;
 				continue ;

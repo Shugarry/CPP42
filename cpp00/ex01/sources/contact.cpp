@@ -59,16 +59,3 @@ std::string	Contact::get_number(void) const
 {
 	return number;
 }
-//
-// Contact Contact::contact_copy(void) const
-// {
-// 	Contact tmp;
-//
-// 	tmp.set_first_name(this->get_first_name());
-// 	tmp.set_last_name(this->get_last_name());
-// 	tmp.set_nickname(this->get_nickname());
-// 	tmp.set_number(this->get_number());
-// 	tmp.set_secret(this->get_secret());
-//
-// 	return tmp;
-// }

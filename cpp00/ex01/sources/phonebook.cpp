@@ -70,50 +70,6 @@ void PhoneBook::print_index(int index)
 int PhoneBook::get_len()
 {
 	if (count > 7)
-		return 7;
+		return 8;
 	return count;
 }
-
-// std::string	create_column(std::string str)
-// {
-// 	std::string column;
-// 	int len;
-//
-// 	if (str.length() > 10)
-// 	{
-// 		column = str;
-// 		column.resize(10);
-// 		column[10] = '.';
-// 	}
-// 	else
-// 	{
-// 		len = 10 - str.length();
-// 		std::string	tmp(len, ' ');
-// 		column = tmp + str;
-// 		column.resize(10);
-// 	}
-// 	return column;
-// }
-//
-// void	PhoneBook::print_contacts()
-// {
-// 	
-// 	int count = this->count;
-// 	if (count > 8)
-// 		count = 8;
-//
-// 	int i = 0;
-// 	std::string column;
-// 	while (i < count)
-// 	{
-// 		column = create_column(contacts[i].get_first_name());
-// 		std::cout << column << "|";
-// 		column = create_column(contacts[i].get_last_name());
-// 		std::cout << column << "|";
-// 		column = create_column(contacts[i].get_nickname());
-// 		std::cout << column << "|";
-// 		column = create_column(contacts[i].get_number());
-// 		std::cout << column << std::endl;
-// 		i++;
-// 	}
-// }
