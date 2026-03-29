@@ -1,14 +1,12 @@
-NAME = placeholder
+NAME = replace
 
 CXX = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HDR_DIR)
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_DIR = sources
-HDR_DIR = headers
 OBJ_DIR = objects
 
 SOURCES = $(addprefix $(SRC_DIR)/, main.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, header.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(NAME)
@@ -16,7 +14,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS) Makefile
 	$(CXX) $(FLAGS) $(OBJECTS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(FLAGS) -c $< -o $@
 
@@ -24,6 +22,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	rm -f $(wildcard .replace)
 	rm -f $(NAME)
 
 re: fclean all

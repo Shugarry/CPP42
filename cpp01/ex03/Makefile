@@ -1,19 +1,19 @@
-NAME = zombie
-
 CXX = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HDR_DIR)
+FLAGS = -Wall -Wextra -Werror -std=c++98
+
+NAME = violence
 
 SRC_DIR = sources
-HDR_DIR = headers
 OBJ_DIR = objects
+HDR_DIR = headers
 
-SOURCES = $(addprefix $(SRC_DIR)/, Zombie.cpp main.cpp randomChump.cpp newZombie.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, Zombie.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp HumanA.cpp HumanB.cpp Weapon.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, HumanA.hpp HumanB.hpp Weapon.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) Makefile
+$(NAME): Makefile $(OBJECTS)
 	$(CXX) $(FLAGS) $(OBJECTS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
@@ -27,5 +27,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-	
+
 .PHONY: all clean fclean re
