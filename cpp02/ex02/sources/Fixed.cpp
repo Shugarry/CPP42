@@ -65,3 +65,85 @@ std::ostream& operator<<(std::ostream& out, const Fixed& other)
 	out << other.toFloat();
 	return out;
 }
+
+bool Fixed::operator>(const Fixed &other) const
+{
+	return (this->raw_value > other.raw_value);
+}
+
+bool Fixed::operator<(const Fixed &other) const
+{
+	return (this->raw_value < other.raw_value);
+}
+
+bool Fixed::operator>=(const Fixed &other) const
+{
+	return (this->raw_value >= other.raw_value);
+}
+
+bool Fixed::operator<=(const Fixed &other) const
+{
+	return (this->raw_value <= other.raw_value);
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+	return (this->raw_value == other.raw_value);
+}
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+	return (this->raw_value != other.raw_value);
+}
+
+Fixed Fixed::operator+(const Fixed &other) const
+{
+	Fixed tmp;
+	tmp.raw_value = (this->raw_value + other.raw_value);
+	return tmp;
+}
+
+Fixed Fixed::operator-(const Fixed &other) const
+{
+	Fixed tmp;
+	tmp.raw_value = (this->raw_value - other.raw_value);
+	return tmp;
+}
+
+Fixed Fixed::operator*(const Fixed &other) const
+{
+	Fixed tmp(this->toFloat() * other.toFloat());
+	return tmp;
+}
+
+Fixed Fixed::operator/(const Fixed &other) const
+{
+	Fixed tmp(this->toFloat() / other.toFloat());
+	return tmp;
+}
+
+Fixed& Fixed::operator++()
+{
+	++raw_value;
+	return *this;
+}
+
+Fixed& Fixed::operator--()
+{
+	--raw_value;
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	raw_value++;
+	return tmp;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	raw_value++;
+	return tmp;
+}
