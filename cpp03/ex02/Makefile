@@ -7,8 +7,8 @@ SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp ClapTrap.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, ClapTrap.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp ClapTrap.cpp FragTrap.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, ClapTrap.hpp FragTrap.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 
 all: $(NAME)
