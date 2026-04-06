@@ -1,29 +1,35 @@
-#include "../headers/Animal.hpp"
+#include "../headers/WrongAnimal.hpp"
 #include <iostream>
 
-Animal::Animal(): type("Default animal")
+WrongAnimal::WrongAnimal(): type("Default animal")
 {
-	std::cout << "Default constructor for animal called" << std::endl;
+	std::cout << "Default constructor for Animal called" << std::endl;
 }
 
-Animal::Animal(Animal& other): type(other.type)
+WrongAnimal::WrongAnimal(const WrongAnimal& other): type(other.type)
 {
-	std::cout << "Copy constructor for animal called" << std::endl;
+	std::cout << "Copy constructor for Animal called" << std::endl;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Destructor for animal called" << std::endl;
+	std::cout << "Destructor for Animal called" << std::endl;
 }
 
-Animal& Animal::operator=(Animal& other)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 {
 	if (&other != this)
 		type = other.type;
+	std::cout << "Copy operator for WrongAnimal called" << std::endl;
 	return *this;
 }
 
-void Animal::makeSound() const
+std::string WrongAnimal::getType() const
 {
-	std::cout << "Nondescript animal sound" << std::endl;
+	return type;
+}
+
+void WrongAnimal::makeSound() const
+{
+	std::cout << "Nondescript WrongAnimal sound" << std::endl;
 }
