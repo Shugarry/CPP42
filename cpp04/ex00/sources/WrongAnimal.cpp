@@ -3,17 +3,17 @@
 
 WrongAnimal::WrongAnimal(): type("Default animal")
 {
-	std::cout << "Default constructor for Animal called" << std::endl;
+	std::cout << "Default constructor for WrongAnimal called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other): type(other.type)
 {
-	std::cout << "Copy constructor for Animal called" << std::endl;
+	std::cout << "Copy constructor for WrongAnimal called" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Destructor for Animal called" << std::endl;
+	std::cout << "Destructor for WrongAnimal called" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
