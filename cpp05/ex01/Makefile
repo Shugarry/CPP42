@@ -7,8 +7,8 @@ SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp Bureaucrat.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, Bureaucrat.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp Bureaucrat.cpp Form.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, Bureaucrat.hpp Form.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(NAME)
