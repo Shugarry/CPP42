@@ -23,7 +23,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 clean:
 	rm -rf $(OBJ_DIR)
 
-flcean: clean
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all

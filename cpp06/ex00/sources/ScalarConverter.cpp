@@ -1,5 +1,6 @@
 #include "../headers/ScalarConverter.hpp"
 #include <iostream>
+#include <limits>
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
@@ -14,21 +15,43 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 
 void is_char(std::string parameter)
 {
+	char c = parameter[1];
+
+	std::cout << "char: " << c << "\n";
+	std::cout << "int: " << static_cast<int>(c) << "\n";
+	std::cout << "float: " << static_cast<float>(c) << "\n";
+	std::cout << "double: " << static_cast<double>(c) << "\n";
 }
 
 void is_int(std::string parameter)
 {
-	int value = std::stoi(parameter);
+	int i = std::stoi(parameter);
+
+	std::cout << "char: " << i << "\n";
+	std::cout << "int: " << static_cast<int>(i) << "\n";
+	std::cout << "float: " << static_cast<float>(i) << "\n";
+	std::cout << "double: " << static_cast<double>(i) << "\n";
 }
 
-void is_float(std::string parameter)
+void is_decimal(std::string parameter)
 {
-	float value = std::stof(parameter);
-}
+	double d = std::strtod(parameter.c_str(), NULL);
 
-void is_double(std::string parameter)
-{
-	double value = std::stod(parameter);
+	if (d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min())
+		std::cout << "char: conversion not possible\n";
+	else
+	{
+		if (std::isprint(static_cast<char>(d)))
+			std::cout << "char: " << static_cast<char>(d) << "\n";
+		else
+			std::cout << "char: character is non printable\n";
+	}
+	if (d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min())
+		std::cout << "int: conversion not possible\n";
+	else
+		std::cout << "int: " << static_cast<int>(d) << "\n";
+	std::cout << "float: " << static_cast<float>(d) << "\n";
+	std::cout << "double: " << d << "\n";
 }
 
 void ScalarConverter::convert(std::string parameter)
@@ -50,9 +73,13 @@ void ScalarConverter::convert(std::string parameter)
 	}
 	else if (parameter.length() == 3 && parameter[0] == '\'' && parameter[2] == '\'')
 	{
-		char value = parameter[1];
-		char_str.assign(1, value);
-		int_str = strto
+		is_char(parameter);
+		return ;
+	}
+	else if (parameter.find('.') != std::string::npos)
+	{
+		is_decimal(parameter);
+		return ;
 	}
 	std::cout << "char: " << char_str << "\n";
 	std::cout << "int: " << int_str << "\n";
