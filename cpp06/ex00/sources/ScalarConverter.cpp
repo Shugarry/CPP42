@@ -1,6 +1,12 @@
 #include "../headers/ScalarConverter.hpp"
-#include <iostream>
-#include <limits>
+# include <iostream>
+# include <limits>
+# include <cstdlib>
+# include <cctype>
+
+ScalarConverter::ScalarConverter()
+{
+};
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
@@ -13,6 +19,10 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 	return *this;
 };
 
+ScalarConverter::~ScalarConverter()
+{
+};
+
 void is_char(std::string parameter)
 {
 	char c = parameter[1];
@@ -23,20 +33,19 @@ void is_char(std::string parameter)
 	std::cout << "double: " << static_cast<double>(c) << "\n";
 }
 
-void is_int(std::string parameter)
+void is_number(std::string parameter)
 {
-	int i = std::stoi(parameter);
+	char* end;
+	double d = std::strtod(parameter.c_str(), &end);
 
-	std::cout << "char: " << i << "\n";
-	std::cout << "int: " << static_cast<int>(i) << "\n";
-	std::cout << "float: " << static_cast<float>(i) << "\n";
-	std::cout << "double: " << static_cast<double>(i) << "\n";
-}
-
-void is_decimal(std::string parameter)
-{
-	double d = std::strtod(parameter.c_str(), NULL);
-
+	if (*end != '\0' && !(*end == 'f' && *(end + 1) == '\0'))
+	{
+		std::cout << "char: invalid literal\n";
+		std::cout << "int: invalid literal\n";
+		std::cout << "float: invalid literal\n";
+		std::cout << "double: invalid literal\n";
+		return;
+	}
 	if (d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min())
 		std::cout << "char: conversion not possible\n";
 	else
@@ -56,33 +65,31 @@ void is_decimal(std::string parameter)
 
 void ScalarConverter::convert(std::string parameter)
 {
-	std::string char_str = "conversion not possible";
-	std::string int_str = "conversion not possible";
 	std::string float_str = "conversion not possible";
 	std::string double_str = "conversion not possible";
 
-	if (parameter == "nanf" || parameter == "-inff" || parameter == "+inff" )
+	if (parameter == "nanf" || parameter == "-inff" || parameter == "+inff")
 	{
 		float_str = parameter;
 		double_str = parameter.substr(0, parameter.length() - 1);
+		std::cout << "char: conversion not possible" << "\n";
+		std::cout << "int: conversion not possible" << "\n";
+		std::cout << "float: " << float_str << "\n";
+		std::cout << "double: " << double_str << "\n";
 	}
-	else if (parameter == "nan" || parameter == "-inf" || parameter == "+inf" )
+	else if (parameter == "nan" || parameter == "-inf" || parameter == "+inf")
 	{
 		float_str = parameter + "f";
 		double_str = parameter;
+		std::cout << "char: conversion not possible" << "\n";
+		std::cout << "int: conversion not possible" << "\n";
+		std::cout << "float: " << float_str << "\n";
+		std::cout << "double: " << double_str << "\n";
 	}
 	else if (parameter.length() == 3 && parameter[0] == '\'' && parameter[2] == '\'')
-	{
 		is_char(parameter);
-		return ;
-	}
-	else if (parameter.find('.') != std::string::npos)
-	{
-		is_decimal(parameter);
-		return ;
-	}
-	std::cout << "char: " << char_str << "\n";
-	std::cout << "int: " << int_str << "\n";
-	std::cout << "float: " << float_str << "\n";
-	std::cout << "double: " << double_str << "\n";
+	else if (parameter.length() == 1 && !std::isdigit(parameter[0]))
+		is_char("'" + parameter + "'");
+	else
+		is_number(parameter);
 }
