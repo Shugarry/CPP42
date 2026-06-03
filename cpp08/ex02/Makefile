@@ -1,14 +1,14 @@
 CXX = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = span
+NAME = mutantstack
 
 SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp Span.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, Span.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp MutantStack.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, MutantStack.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(NAME)
