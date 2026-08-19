@@ -7,7 +7,7 @@ SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp MutantStack.cpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp)
 HEADERS = $(addprefix $(HDR_DIR)/, MutantStack.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
