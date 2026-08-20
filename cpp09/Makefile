@@ -7,8 +7,8 @@ SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp BitcoinExchange.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, BitcoinExchange.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp Data.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, Data.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(NAME)
