@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 
 class Data
 {
@@ -22,10 +23,11 @@ class Data
 		Data(std::string filename);
 
 		void parse_file(std::string filename);
+		void print();
 
 	private:
 		std::string filename;
-		std::map<time_t, Bitcoin> value_db;
+		std::map<time_t, double> value_db;
 };
 
 #endif
