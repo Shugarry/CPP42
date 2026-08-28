@@ -1,14 +1,14 @@
-NAME = bitcoin
+NAME = poland
 
 CXX = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HDR_DIR)
+FLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HDR_DIR) -g
 
 SRC_DIR = sources
 HDR_DIR = headers
 OBJ_DIR = objects
 
-SOURCES = $(addprefix $(SRC_DIR)/, main.cpp Data.cpp)
-HEADERS = $(addprefix $(HDR_DIR)/, Data.hpp)
+SOURCES = $(addprefix $(SRC_DIR)/, main.cpp RPN.cpp)
+HEADERS = $(addprefix $(HDR_DIR)/, RPN.hpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(NAME)
