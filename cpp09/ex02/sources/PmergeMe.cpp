@@ -132,19 +132,16 @@ int PmergeMe::binary_search(T& container, int left, int right, int target)
 {
 	if (right == -1)
 		right = container.size();
-	if (left > right)
+	if (left >= right)
 		return left;
 
 	int middle = left + ((right - left) / 2);
 
 	comparisons++;
-	if (container[middle] == target)
-		return middle;
-	else if (container[middle] < target)
+	if (container[middle] < target)
 		return binary_search(container, middle + 1, right, target);
 	else
-		return binary_search(container, left, middle - 1, target);
-	
+		return binary_search(container, left, middle, target);
 }
 
 template <typename T>
@@ -181,6 +178,13 @@ void PmergeMe::insertion_step(T& main, T& pending, T& tmp_main)
 
 		for (int j = index_bound; j >= lower_bound && j > 0; j--)
 		{
+			if (j == (int)tmp_main.size()) // odd amount case
+			{
+				int insert_position = binary_search(main, 0, -1, pending[j]);
+				main.insert(main.begin() + insert_position, pending[j]);
+				inserted++;
+				continue;
+			}
 			int og_index = find_limit(chain[j], tmp_main);
 			int right = find_limit(chain[j], main);
 			int insert_position = binary_search(main, 0, right, pending[og_index]);
@@ -199,8 +203,8 @@ void PmergeMe::recursive_step(T& container)
 	if (container.size() <= 1)
 		return ;
 
+	
 	T main, pending, tmp_main;
-
 	for (size_t i = 0; i < container.size() - 1; i += 2)
 	{
 		if (container[i] > container[i + 1])
@@ -218,10 +222,12 @@ void PmergeMe::recursive_step(T& container)
 			comparisons++;
 		}
 	}
+
+	recursive_step(main);
+
 	if (container.size() % 2 == 1)
 		pending.push_back(container.back());
 
-	recursive_step(main);
 	insertion_step(main, pending, tmp_main);
 	container = main;
 }
