@@ -4,7 +4,7 @@
 
 int main(int ac, char **av)
 {
-	if (ac <= 3)
+	if (ac <= 2)
 	{
 		std::cout << "error: need at least two numbers\n";
 		std::cout << "format: ./pmergeme <int> <int> <int> ...";
