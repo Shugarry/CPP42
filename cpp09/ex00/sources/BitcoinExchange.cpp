@@ -27,9 +27,9 @@ static bool valid_date(std::string& date)
 
 	unsigned int day = atoi(date.substr(8, 9).c_str());
 	unsigned int month = atoi(date.substr(5, 6).c_str());
-	unsigned int year = atoi(date.substr(0, 3).c_str());
-	
-	if (day < 1 || month < 1 || year < 0)
+	unsigned int year = atoi(date.substr(0, 4).c_str());
+
+	if (day < 1 || month < 1 || month > 12)
 		return false;
 	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
 	{
@@ -38,9 +38,9 @@ static bool valid_date(std::string& date)
 	}
 	else if (month == 2)
 	{
-		if (day == 29 && (!(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)))
+		if (day == 29 && !((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)))
 			return false;
-		else if (day > 28)
+		else if (day > 29)
 			return false;
 	}
 	else
